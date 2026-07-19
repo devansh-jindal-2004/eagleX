@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { ArrowRight, Shield, BrainCircuit, ChevronRight } from "lucide-react";
 
 const pillars = [
@@ -15,30 +15,14 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen overflow-hidden bg-[#0E1117] text-white"
+      /* [clip-path:inset(0)] creates the clipping boundary so the fixed image cannot escape this component */
+      className="relative min-h-screen overflow-hidden bg-[#0E1117] text-white isolate [clip-path:inset(0)]"
     >
-      {/* Background */}
-      <div className="absolute inset-0">
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage:
-              "linear-gradient(#D4AF3720 1px,transparent 1px),linear-gradient(90deg,#D4AF3720 1px,transparent 1px)",
-            backgroundSize: "72px 72px",
-          }}
-        />
-
-        <div className="absolute left-1/2 top-0 h-[650px] w-[650px] -translate-x-1/2 rounded-full bg-[#D4AF37]/10 blur-[180px]" />
-
-        <div className="absolute bottom-0 left-0 h-72 w-72 rounded-full bg-[#D4AF37]/5 blur-[120px]" />
-
-        <div className="absolute right-0 top-40 h-72 w-72 rounded-full bg-[#D4AF37]/5 blur-[120px]" />
-      </div>
-
       <div className="relative mx-auto flex min-h-screen max-w-7xl items-center px-6 pt-28">
-        <div className="grid w-full items-center gap-20 lg:grid-cols-2">
-          {/* LEFT */}
-          <div>
+        <div className="relative grid w-full items-center gap-20 lg:grid-cols-2 z-10">
+          
+          {/* LEFT SECTION */}
+          <div className="relative z-20">
             <div className="inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/20 bg-[#D4AF37]/10 px-4 py-2 text-sm text-[#F2C14E]">
               <Shield size={14} />
               Trusted Enterprise Technology Partner
@@ -89,65 +73,57 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* RIGHT */}
-          <div className="relative flex items-center justify-center">
-            {/* Outer Ring */}
-            <div className="absolute h-[560px] w-[560px] rounded-full border border-[#D4AF37]/10" />
+          {/* RIGHT SECTION */}
+          <div className="fixed inset-0 lg:absolute lg:inset-auto lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:w-1/2 -z-10 flex items-center justify-center opacity-20 pointer-events-none lg:opacity-100 lg:pointer-events-auto">
+            
+            {/* Background Graphic Elements - Hidden on mobile/tablet, intact on desktop */}
+            <div className="hidden lg:block absolute h-[560px] w-[560px] rounded-full border border-[#D4AF37]/10" />
+            <div className="hidden lg:block absolute h-[430px] w-[430px] rounded-full border border-[#D4AF37]/10" />
+            <div className="hidden lg:block absolute h-[300px] w-[300px] rounded-full border border-[#D4AF37]/15" />
 
-            <div className="absolute h-[430px] w-[430px] rounded-full border border-[#D4AF37]/10" />
+            {/* Orbit Points - Hidden on mobile/tablet, intact on desktop */}
+            <span className="hidden lg:block absolute left-12 top-24 h-3 w-3 rounded-full bg-[#D4AF37]" />
+            <span className="hidden lg:block absolute right-20 top-20 h-3 w-3 rounded-full bg-[#D4AF37]" />
+            <span className="hidden lg:block absolute bottom-20 left-24 h-3 w-3 rounded-full bg-[#D4AF37]" />
+            <span className="hidden lg:block absolute bottom-24 right-16 h-3 w-3 rounded-full bg-[#D4AF37]" />
 
-            <div className="absolute h-[300px] w-[300px] rounded-full border border-[#D4AF37]/15" />
+            {/* Connecting Lines - Hidden on mobile/tablet, intact on desktop */}
+            <div className="hidden lg:block absolute left-20 top-28 h-px w-40 bg-[#D4AF37]/30" />
+            <div className="hidden lg:block absolute right-20 top-28 h-px w-32 bg-[#D4AF37]/30" />
+            <div className="hidden lg:block absolute bottom-28 left-24 h-px w-40 bg-[#D4AF37]/30" />
+            <div className="hidden lg:block absolute bottom-28 right-16 h-px w-32 bg-[#D4AF37]/30" />
 
-            {/* Orbit Points */}
-            <span className="absolute left-12 top-24 h-3 w-3 rounded-full bg-[#D4AF37]" />
-            <span className="absolute right-20 top-20 h-3 w-3 rounded-full bg-[#D4AF37]" />
-            <span className="absolute bottom-20 left-24 h-3 w-3 rounded-full bg-[#D4AF37]" />
-            <span className="absolute bottom-24 right-16 h-3 w-3 rounded-full bg-[#D4AF37]" />
+            {/* Logo Glow - Hidden on mobile/tablet, intact on desktop */}
+            <div className="hidden lg:block absolute h-80 w-80 rounded-full bg-[#D4AF37]/20 blur-[120px]" />
 
-            {/* Connecting Lines */}
-            <div className="absolute left-20 top-28 h-px w-40 bg-[#D4AF37]/30" />
-            <div className="absolute right-20 top-28 h-px w-32 bg-[#D4AF37]/30" />
-            <div className="absolute bottom-28 left-24 h-px w-40 bg-[#D4AF37]/30" />
-            <div className="absolute bottom-28 right-16 h-px w-32 bg-[#D4AF37]/30" />
-
-            {/* Logo Glow */}
-            <div className="absolute h-80 w-80 rounded-full bg-[#D4AF37]/20 blur-[120px]" />
-
-            {/* Logo */}
-            <div className="relative flex h-72 w-72 items-center justify-center rounded-full border border-[#D4AF37]/20 bg-[#161B22]/70 backdrop-blur-xl">
+            {/* Core Logo Container */}
+            <div className="relative flex h-80 w-80 md:h-96 md:w-96 lg:h-72 lg:w-72 items-center justify-center rounded-full border border-[#D4AF37]/20 bg-[#161B22]/40 backdrop-blur-sm lg:bg-[#161B22]/70 lg:backdrop-blur-xl">
               <img
                 src="/logo.png"
                 alt="EagleX Nexus"
-                className="h-40 w-auto object-contain"
+                className="h-48 w-auto object-contain lg:h-40"
               />
             </div>
 
-            {/* Floating Cards */}
-            <div className="absolute left-0 top-24 rounded-2xl border border-[#D4AF37]/15 bg-[#161B22]/90 p-5 backdrop-blur">
+            {/* Floating Cards - Hidden on mobile/tablet, intact on desktop */}
+            <div className="hidden lg:block absolute left-0 top-24 rounded-2xl border border-[#D4AF37]/15 bg-[#161B22]/90 p-5 backdrop-blur">
               <BrainCircuit className="mb-3 text-[#D4AF37]" size={26} />
-              <p className="text-sm font-semibold">
-                AI Automation
-              </p>
-              <span className="text-xs text-[#A1A8B3]">
-                Intelligent Workflows
-              </span>
+              <p className="text-sm font-semibold">AI Automation</p>
+              <span className="text-xs text-[#A1A8B3]">Intelligent Workflows</span>
             </div>
 
-            <div className="absolute bottom-24 right-0 rounded-2xl border border-[#D4AF37]/15 bg-[#161B22]/90 p-5 backdrop-blur">
+            <div className="hidden lg:block absolute bottom-24 right-0 rounded-2xl border border-[#D4AF37]/15 bg-[#161B22]/90 p-5 backdrop-blur">
               <Shield className="mb-3 text-[#D4AF37]" size={26} />
-              <p className="text-sm font-semibold">
-                Cyber Security
-              </p>
-              <span className="text-xs text-[#A1A8B3]">
-                Enterprise Protection
-              </span>
+              <p className="text-sm font-semibold">Cyber Security</p>
+              <span className="text-xs text-[#A1A8B3]">Enterprise Protection</span>
             </div>
           </div>
+          
         </div>
       </div>
 
-      {/* Bottom Trust */}
-      <div className="relative border-t border-[#D4AF37]/10 bg-[#11161E]/80 mt-10">
+      {/* Bottom Trust Row */}
+      <div className="relative z-20 border-t border-[#D4AF37]/10 bg-[#11161E]/80 mt-10">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-8 px-6 py-8">
           <p className="text-sm uppercase tracking-[0.25em] text-[#A1A8B3]">
             Trusted Technologies
